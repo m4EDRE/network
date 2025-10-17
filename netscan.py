@@ -1,6 +1,18 @@
 import socket
 import os
-print(''' 
+
+def pingsweep(subnet):
+    for i in range(240,256):
+        if os.system(f"ping -c 1 {subnet}{i} | grep 64") == False:
+            print(f"IP {subnet}{i} está ativo!")
+
+def portscan(IP):
+    for i in range(1,65353):
+        os.system(f"nc -zv 192.168.1.250 {i} 2>&1 | grep succeeded")
+
+
+
+menu = int(input(''' 
 ⠀⠀⠀⠀⣠⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣄⠀⠀⠀⠀
 ⠀⠀⠀⠸⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣇⠀⠀⠀
 ⢀⣤⣤⣼⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣾⣿⣿⣿⣿⣿⣿⣷⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣤⣤⡀
@@ -24,9 +36,22 @@ print('''
 ⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠈⠿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠁⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠚⠋⠀⠀⠀⠀⠀⠀⠀⠀
       
-      Feeling....
+Feeling....
 
-''')
-subnet = input("Repasse a Subnet a ser analisada:")
-for i in range(1,255):
-    
+PingSweep - (1)
+PortScan  - (2)
+Selecione a opção: '''))
+
+
+
+if menu == 1:
+    print("Formato da Subnet: 172.16.0. (Por padrão é analisado o /24)")
+    subnet = input('''Repasse a Subnet a ser analisada:
+''' )
+    pingsweep(subnet)
+elif menu == 2 :
+    ip = input("Passe o host a ser analisado:")
+    portscan(ip)
+else:
+    print("Selecione uma opção válida")
+
