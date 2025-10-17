@@ -9,9 +9,7 @@ def pingsweep(subnet):
 def portscan(IP):
     for i in range(1,65353):
         os.system(f"nc -zv 192.168.1.250 {i} 2>&1 | grep succeeded")
-
-
-
+        
 menu = int(input(''' 
 ⠀⠀⠀⠀⣠⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣄⠀⠀⠀⠀
 ⠀⠀⠀⠸⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣇⠀⠀⠀
@@ -41,8 +39,6 @@ Feeling....
 PingSweep - (1)
 PortScan  - (2)
 Selecione a opção: '''))
-
-
 
 if menu == 1:
     print("Formato da Subnet: 172.16.0. (Por padrão é analisado o /24)")
